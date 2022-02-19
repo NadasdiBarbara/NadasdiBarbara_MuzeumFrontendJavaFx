@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="305.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.muzeumfrontendjavafx.controllers.HozzaadController">
+   <children>
+      <Button layoutX="160.0" layoutY="242.0" mnemonicParsing="false" onAction="#addNewPaintingButtonClick" prefHeight="37.0" prefWidth="138.0" text="Add New Painting" />
+      <Label layoutX="91.0" layoutY="90.0" prefHeight="29.0" prefWidth="90.0" text="Title" />
+      <Label layoutX="91.0" layoutY="140.0" prefHeight="29.0" prefWidth="90.0" text="Year" />
+      <Label layoutX="91.0" layoutY="186.0" prefHeight="29.0" prefWidth="90.0" text="On Display" />
+      <TextField fx:id="textFieldPaintingTitle" layoutX="228.0" layoutY="92.0" prefHeight="29.0" prefWidth="170.0" />
+      <CheckBox fx:id="checkboxPaintingOnDisplay" layoutX="305.0" layoutY="186.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="15.0" />
+      <Spinner fx:id="spinnerPaintingYear" layoutX="228.0" layoutY="140.0" prefHeight="29.0" prefWidth="170.0" >
+         <valueFactory>
+            <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="10" initialValue="2022" max="2022" min="-1000" />
+         </valueFactory>
+      </Spinner>
+   </children>
+</AnchorPane>

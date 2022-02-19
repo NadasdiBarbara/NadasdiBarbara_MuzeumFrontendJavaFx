@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane prefHeight="318.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.muzeumfrontendjavafx.controllers.MainController">
+   <tabs>
+      <Tab text="Paintings">
+         <content>
+            <AnchorPane>
+               <children>
+                  <TableView fx:id="paintingTable" layoutX="14.0" prefHeight="197.0" prefWidth="393.0">
+                    <columns>
+                        <TableColumn fx:id="colTitle" prefWidth="199.0" text="Title" />
+                      <TableColumn fx:id="colYear" prefWidth="100.0" text="Year" />
+                      <TableColumn fx:id="colOndDsplay" prefWidth="92.0" text="On_display" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="14.0" layoutY="220.0" mnemonicParsing="false" onAction="#newPaintingButtonClick" prefHeight="25.0" prefWidth="84.0" text="New" />
+                  <Button layoutX="155.0" layoutY="220.0" mnemonicParsing="false" onAction="#modificationPaintingButtonClick" text="Modification" />
+                  <Button layoutX="291.0" layoutY="220.0" mnemonicParsing="false" onAction="#deletePaintingButtonClick" prefHeight="25.0" prefWidth="87.0" text="Delete" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Statues">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        </content>
+      </Tab>
+   </tabs>
+</TabPane>
