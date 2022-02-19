@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="296.0" prefWidth="423.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.muzeumfrontendjavafx.controllers.HozzadStatueController">
+   <children>
+      <Label layoutX="124.0" layoutY="70.0" prefHeight="25.0" prefWidth="64.0" text="Person" />
+      <Label layoutX="124.0" layoutY="108.0" prefHeight="25.0" prefWidth="64.0" text="Height" />
+      <Label layoutX="124.0" layoutY="146.0" prefHeight="25.0" prefWidth="64.0" text="Price" />
+      <TextField fx:id="textFieldPerson" layoutX="195.0" layoutY="70.0" />
+       <Spinner fx:id="spinnerHeight" layoutX="223.0" layoutY="108.0" prefHeight="25.0" prefWidth="94.0" >
+
+       </Spinner>
+       <Spinner fx:id="spnnerPrice" layoutX="223.0" layoutY="146.0" prefHeight="25.0" prefWidth="94.0" >
+
+       </Spinner>
+      <Button layoutX="176.0" layoutY="209.0" mnemonicParsing="false" onAction="#addStatueButtonClick" prefHeight="25.0" prefWidth="94.0" text="Add" />
+   </children>
+</AnchorPane>

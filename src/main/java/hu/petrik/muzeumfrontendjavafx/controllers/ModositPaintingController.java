@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.security.PublicKey;
 
-public class ModositController extends Controller {
+public class ModositPaintingController extends Controller {
     @javafx.fxml.FXML
     private CheckBox ckboxModOnDisplay;
     @javafx.fxml.FXML
@@ -63,6 +63,7 @@ public class ModositController extends Controller {
     }
     public void setModification(Painting mod){
         this.mod = mod;
+        valueSetting();
 
     }
     private void valueSetting(){

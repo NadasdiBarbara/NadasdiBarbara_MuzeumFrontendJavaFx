@@ -1,8 +1,6 @@
 package hu.petrik.muzeumfrontendjavafx.controllers;
 
-import hu.petrik.muzeumfrontendjavafx.Controller;
-import hu.petrik.muzeumfrontendjavafx.Painting;
-import hu.petrik.muzeumfrontendjavafx.PaintingApi;
+import hu.petrik.muzeumfrontendjavafx.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -22,6 +20,14 @@ public class MainController extends Controller {
     private TableColumn<Painting, Integer> colYear;
     @FXML
     private TableColumn<Painting, String> colTitle;
+    @FXML
+    private TableColumn<Statue, Integer> colHeight;
+    @FXML
+    private TableColumn<Statue, String> colPerson;
+    @FXML
+    private TableColumn<Statue, Integer> colPrice;
+    @FXML
+    private TableView<Statue> statueTableView;
 
 
     public void initialize(){
@@ -29,6 +35,11 @@ public class MainController extends Controller {
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         colOndDsplay.setCellValueFactory(new PropertyValueFactory<>("on_display"));
         paintingUpload();
+        colHeight.setCellValueFactory(new PropertyValueFactory<>("height"));
+        colPerson.setCellValueFactory(new PropertyValueFactory<>("person"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        statueUpload();
+
     }
     @FXML
     public void modificationPaintingButtonClick(ActionEvent actionEvent) {
@@ -39,7 +50,7 @@ public class MainController extends Controller {
         }
         Painting modificion = paintingTable.getSelectionModel().getSelectedItem();
         try {
-            ModositController mod= (ModositController) ujAblak("modosit-painting-view","Painting Modification",320,400);
+            ModositPaintingController mod= (ModositPaintingController) ujAblak("modosit-painting-view","Painting Modification",320,400);
             mod.setModification(modificion);
             mod.getStage().setOnHiding(event -> paintingTable.refresh());
             mod.getStage().show();
@@ -65,7 +76,7 @@ public class MainController extends Controller {
     public void deletePaintingButtonClick(ActionEvent actionEvent) {
         int selectedIndex = paintingTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1){
-            alert("A törléshez válasszon ki egy elemet a táblázatból");
+            alert("Select an item");
             return;
         }
         Painting delete = paintingTable.getSelectionModel().getSelectedItem();
@@ -88,6 +99,69 @@ public class MainController extends Controller {
                 paintingTable.getItems().add(painting);
             }
         }catch (IOException e){
+            hibaKiir(e);
+        }
+    }
+
+    @FXML
+    public void newStatueButtonClick(ActionEvent actionEvent) {
+        try {
+            Controller add = ujAblak("hozzaad-statue-view.fxml","Add Statue",320,400);
+            add.getStage().setOnCloseRequest(event -> statueUpload());
+            add.getStage().show();
+        }catch (Exception e){
+            hibaKiir(e);
+        }
+    }
+
+    private void statueUpload() {
+        try {
+            List<Statue> statueList = StatueApi.getStatues();
+            statueTableView.getItems().clear();
+            for (Statue statue:statueList){
+                statueTableView.getItems().add(statue);
+            }
+        }catch (IOException e){
+            hibaKiir(e);
+        }
+    }
+
+    @FXML
+    public void modStatueButtonClick(ActionEvent actionEvent) {
+
+        int selectedIndex = statueTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("A módosításhoz válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Statue modificion = statueTableView.getSelectionModel().getSelectedItem();
+        try {
+            ModositStatueController mod= (ModositStatueController) ujAblak("modosit-statue-view","Statue Modification",320,400);
+            mod.setModositando(modificion);
+            mod.getStage().setOnHiding(event -> statueTableView.refresh());
+            mod.getStage().show();
+
+        }catch (IOException e){
+            hibaKiir(e);
+        }
+    }
+
+    @FXML
+    public void deleteStatueButtonClick(ActionEvent actionEvent) {
+        int selectedIndex = statueTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1){
+            alert("Select an item");
+            return;
+        }
+        Statue delete = statueTableView.getSelectionModel().getSelectedItem();
+        if (!confirm("Are you sure?: "+delete.getPerson())){
+            return;
+        }
+        try {
+            boolean sikeres = StatueApi.deleteStatue(delete.getId());
+            alert(sikeres ? "SUccesful delete": "Delete failed");
+            statueUpload();
+        } catch (IOException e) {
             hibaKiir(e);
         }
     }

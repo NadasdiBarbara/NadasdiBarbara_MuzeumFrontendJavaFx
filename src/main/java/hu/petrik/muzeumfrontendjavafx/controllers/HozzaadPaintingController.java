@@ -8,7 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
-public class HozzaadController extends Controller {
+public class HozzaadPaintingController extends Controller {
     @javafx.fxml.FXML
     private Spinner<Integer> spinnerPaintingYear;
     @javafx.fxml.FXML
